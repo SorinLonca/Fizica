@@ -34,8 +34,8 @@ var canvas = document.getElementById('updating-chart'),
       datasets: [
           {
               fillColor: "rgba(220,220,220,0.2)",
-              strokeColor: "rgba(220,220,220,1)",
-              pointColor: "rgba(220,220,220,1)",
+              strokeColor: "red",
+              pointColor: "red",
               pointStrokeColor: "#fff",
               data: [65, 59, 80, 81, 56, 55, 40]
           },
@@ -49,16 +49,42 @@ var canvas = document.getElementById('updating-chart'),
       ]
     },
     latestLabel = startingData.labels[6];
+    function v( t, omega, A, phi ) {
+        return omega * A * Math.cos( omega * t + phi );
+    }
+    var indice = 0;
+    var k = 0.1;
+    for (var k = 0.1; k <= 100; k += 0.1) {
+        startingData.datasets[1].data[indice] = v(k,3,50,3.14);
+        console.log("vy = " + startingData.datasets[1].data[indice] + " vx = " + k);
+        indice++;
+    }
+
 
 // Reduce the animation steps for demo clarity.
 var myLiveChart = new Chart(ctx).Line(startingData, {animationSteps: 15});
 
+function y( t, omega, A, phi ) {
+    //console.log( Math.sin( omega * t + phi ) );
+    return A * Math.sin( omega * t + phi );
+}
+
+function a( t, omega, A, phi ) {
+    //console.log( Math.sin( omega * t + phi ) );
+    return -1 * omega * omega * A * Math.sin( omega * t + phi );
+}
+
+var i = 0.1;
 
 setInterval(function(){
   // Add two random numbers for each dataset
-  myLiveChart.addData([Math.random() * 100, Math.random() * 100], ++latestLabel);
+  var z = y(i,3,50,3.14);
+  console.log("yy = " + z + " yx = " + i);
+  i += 0.1;
+  myLiveChart.addData([z,i], ++latestLabel);
   // Remove the first point so we dont just add values forever
   myLiveChart.removeData();
+
 }, 1000);
 </script>
 <script src="http://static.jsbin.com/js/render/edit.js?3.40.2"></script>
