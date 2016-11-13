@@ -20,6 +20,12 @@
       <input id="amplitudine" type="text" style="display:block; margin:5px;" name="name" value="Amplitudine">
       <input id="omega" type="text" style="display:block; margin:5px;" name="name" value="Omega">
       <input id="phi" type="text" style="display:block; margin:5px;" name="name" value="Phi">
+      <div class="" style="display:block;">
+        <input id="timp" type="text" style="margin:5px;" name="name" value="Timp">
+        <label id="val1"></label>
+        <label id="val2"></label>
+        <label id="val3"></label>
+      </div>
       <button id="btn" type="button" style="display:block; margin:5px; height:20px; width:175px;" name="button">Submit</button>
       <dl>
         <div class="" style="display:block;">
@@ -116,9 +122,16 @@
         var A = 50;
         var phi = 3.14;
           i = 0.0;
-          var omega = document.getElementById('omega').value;
-          var A = document.getElementById('amplitudine').value;
+          var omega = parseFloat(document.getElementById('omega').value);
+          var A = parseFloat(document.getElementById('amplitudine').value);
           var phi = parseFloat(document.getElementById('phi').value);
+          var t = parseFloat(document.getElementById('timp').value);
+          // var val1 = document.getElementById('val1').value;
+          // var val2 = document.getElementById('val2').value;
+          // var val3 = document.getElementById('val3').value;
+          document.getElementById('val1').innerHTML = "Elongatia este : " + y(t, omega, A, phi).toFixed(2) + " m";
+          document.getElementById('val2').innerHTML = "Viteza este : " + v(t, omega, A, phi).toFixed(2) + " m/s";
+          document.getElementById('val3').innerHTML = "Acceleratia este : " + a(t, omega, A, phi).toFixed(2) + " m/s^2";
           for (var k = 0.0; k <= 100; k += 0.1) {
               startingData.datasets[1].data[indice] = v(k, omega, A, phi);
               startingData.datasets[2].data[indice] = a(k, omega, A, phi);
