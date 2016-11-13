@@ -1,0 +1,16 @@
+dt {
+width: 40px;
+height: 40px;
+display: inline-block;
+overflow: hidden;
+border: 1px solid #000;
+}
+.aqua {background-color: red; color: red; }
+.orange {background-color: rgba(151,187,205,1); color: rgba(151,187,205,1); }
+.black {background-color: green; color: green; }
+
+dd {
+display: inline-block;
+width: 15em;
+margin: 0 0 0 1em;
+}
