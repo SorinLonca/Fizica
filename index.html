@@ -138,7 +138,9 @@
           var A = parseFloat(document.getElementById('amplitudine').value);
           var phi = parseFloat(document.getElementById('phi').value);
           omega = omega*6.28;
-          omega.toFixed(1);
+          omega = omega.toFixed(1);
+          // deci verifica val A = 50, frecventa = 0.5, phi = 3, daca valoare pe grafic ii prea mare nu mai iese asa frumos
+          console.log(omega);
           var t = parseFloat(document.getElementById('timp').value);
           // var val1 = document.getElementById('val1').value;
           // var val2 = document.getElementById('val2').value;
